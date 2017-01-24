@@ -126,6 +126,31 @@ class Timer {
     return this;
   }
 
+  intervalExists(ctx, name) {
+    if ((typeof ctx) === 'object' && this.contextTimers.has(ctx)) {
+      return this.contextTimers.get(ctx).interval.has(name);
+    } else {
+      return false;
+    }
+  }
+
+  _intervalExistsContext(ctx, ...args) {
+    if (!this.contextTimers.has(ctx)) {
+      return false;
+    }
+
+    let exists = false;
+    if (args.length === 0) {
+      Array.from(this.contextTimers.get(ctx).intervals.keys()).forEach((interval) => {
+        exists = this.contextTimers.get(ctx).intervalExists(interval);
+      });
+    } else {
+
+    }
+
+    return exists;
+  }
+
   setImmediate(...args) {
     if ((typeof args[0]) === 'object') {
       return this._setImmediateContext(...args);
