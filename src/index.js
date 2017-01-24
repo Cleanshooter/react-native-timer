@@ -134,23 +134,6 @@ class Timer {
     }
   }
 
-  _intervalExistsContext(ctx, ...args) {
-    if (!this.contextTimers.has(ctx)) {
-      return false;
-    }
-
-    let exists = false;
-    if (args.length === 0) {
-      Array.from(this.contextTimers.get(ctx).intervals.keys()).forEach((interval) => {
-        exists = this.contextTimers.get(ctx).intervalExists(interval);
-      });
-    } else {
-
-    }
-
-    return exists;
-  }
-
   setImmediate(...args) {
     if ((typeof args[0]) === 'object') {
       return this._setImmediateContext(...args);
