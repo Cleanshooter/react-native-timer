@@ -128,7 +128,7 @@ class Timer {
 
   intervalExists(ctx, name) {
     if ((typeof ctx) === 'object' && this.contextTimers.has(ctx)) {
-      return this.contextTimers.get(ctx).interval.has(name);
+      return this.contextTimers.get(ctx).intervals.has(name);
     } else {
       return false;
     }
